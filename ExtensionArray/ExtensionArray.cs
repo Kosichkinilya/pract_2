@@ -5,16 +5,24 @@ namespace Lib_8
 {
     public static class ExtensionArray
     {
-        public static void Fill(this Array<int> numbers)
+        /// <summary>
+        /// создает одномерный массив от 1 до 100
+        /// </summary>
+        /// <param name="numbers">массив для заполнения</param>
+        public static void Fill(this Array<int> numbers, int min = -10, int max = 11) 
         {
             Random rnd = new();
             for (int i = 0; i < numbers.Capacity; i++)
             {
-                numbers.Add(rnd.Next(1, 100));
+                numbers.Add(rnd.Next(min, max));
             }
         }
+        /// <summary>
+        /// считает сумму элементов массива < 3 
+        /// </summary>
+        /// <param name="numbers">массив для заполнения</param>
 
-        public static void Difference(this Array<int> numbers)
+        public static double Calculation(this Array<int> numbers)
         {
             double sum = 0;
             for (int i = 0; i < numbers.Capacity; i++)
@@ -24,7 +32,7 @@ namespace Lib_8
                     sum += numbers[i];
                 }
             }
-            Math.Cos(sum);
+            return Math.Cos(sum);
         }
     }
 }

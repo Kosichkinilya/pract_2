@@ -17,7 +17,7 @@ namespace Практическая_2_Косичкин
         }
 
         Array<int> list = new Array<int>(0);
-             
+
         private void Exit(object sender, RoutedEventArgs e)
         {
             Close();
@@ -28,6 +28,7 @@ namespace Практическая_2_Косичкин
             Razmer_Box.Clear();
             add_elements_Box.Clear();
             Removing.Clear();
+            DataGrid.ItemsSource = null;
         }
 
         private void Information(object sender, RoutedEventArgs e)
@@ -35,7 +36,7 @@ namespace Практическая_2_Косичкин
             MessageBox.Show(" Вычислить косинус (cos) суммы чисел < 3. \r\n Результат вывести на экран \r\n \r\n Разработчик: Косичкин Илья \r\n ИСП - 34");
         }
 
-        private void Fill(object sender, RoutedEventArgs e)
+        private void Fill(object sender, RoutedEventArgs e) // заполняет элеменами датагрид
         {
             if (!int.TryParse(Razmer_Box.Text, out int count))
             {
@@ -57,15 +58,15 @@ namespace Практическая_2_Косичкин
                 return;
             }
             list = new Array<int>(count);
-            list.Difference();
+            list.Calculation();
             DataGrid.ItemsSource = list.ToDataTable().DefaultView;
         }
 
-        private void Add_An_Element(object sender, RoutedEventArgs e)
+        private void Add_An_Element(object sender, RoutedEventArgs e) // добавляет элементы
         {
             if (list.Capacity != 0)
             {
-                string[] massiveString = add_elements_Box.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                string[] massiveString = add_elements_Box.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries); 
                 int[] numbers = new int[massiveString.Length];
 
                 for (int i = 0; i < massiveString.Length; i++)
@@ -95,5 +96,10 @@ namespace Практическая_2_Косичкин
             }
             else MessageBox.Show("Некорректные значения");
         }
-    }  
+
+        private void Rez_Click(object sender, RoutedEventArgs e)
+        {
+            Rezultat_box.Text = Convert.ToString(list.Calculation());
+        }
+    }
 }

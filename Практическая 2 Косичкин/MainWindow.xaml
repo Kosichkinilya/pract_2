@@ -73,6 +73,20 @@
                     VerticalAlignment="Top"
                     Click="Add_An_Element"
                     Content="Добавить" />
+                <TextBox
+                    x:Name="Rezultat_box"
+                    Width="120"
+                    Margin="11,119,0,17"
+                    HorizontalAlignment="Left"
+                    TextWrapping="Wrap" IsEnabled="False" />
+                <Button
+                    Width="70"
+                    Height="26"
+                    Margin="182,119,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="Rez_Click"
+                    Content="Результат" />
 
             </Grid>
         </Border>

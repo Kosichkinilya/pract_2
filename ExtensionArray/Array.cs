@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
-
-
-
+using System.Windows.Controls;
 
 namespace LibArray
 {
@@ -25,9 +23,10 @@ namespace LibArray
         // свойства
         public int Length { get; private set; }
 
-        public T this[int index] // индексаторы 
+        public T this[int index] // индексаторы c обобщением и методом расширения
+                                 // добавляем новый функционал 
         {
-            get { return _items[index]; }
+            get { return _items[index]; } 
             set { _items[index] = value; }
         }
 
@@ -47,7 +46,7 @@ namespace LibArray
             }
         }
 
-        private int EnsureCapacity(int itemsLenght = 0)
+        private int EnsureCapacity(int itemsLenght = 0) // расширение длины массива на 2 
         {
             int tempCapacity = Capacity;
             while (itemsLenght + Length >= tempCapacity)
@@ -58,7 +57,7 @@ namespace LibArray
             return tempCapacity;
         }
 
-        public DataTable ToDataTable()
+        public DataTable ToDataTable() // вывод в таблицу 
         {
             var res = new DataTable();
 
@@ -78,25 +77,20 @@ namespace LibArray
             return res;
         }
 
-        // Копирует диапазон элементов из одного массива Array в другой массив Array и при
-        //необходимости выполняет приведение типов и упаковку-преобразование.
-        public void AddRange(T[] items) 
+        public void AddRange(T[] items) // добавление массива в конец существующего 
         {
             Capacity = EnsureCapacity(items.Length);
             Array.Copy(items, 0, _items, Length, items.Length);
             Length += items.Length;
         }
 
-        // 1 2 3 4 5 array
-        // 0 1 2 3 4 index
-        public bool Remove(T item)
+        public bool Remove(T item) 
         {
-            int x = Array.IndexOf(_items, item);
+            int x = Array.IndexOf(_items, item); //удаляет элемент
 
             if (x >= 0)
             {
                 Array.Copy(_items, x + 1, _items, x, Capacity - (x + 1));
-                Capacity--;
                 Length--;
                 return true;
             }
@@ -114,11 +108,12 @@ namespace LibArray
             Capacity = _defaultcapacity;
             Length = 0;
             _items = new T[Capacity];
+            
         }
 
         public T[] ToArray()
         {
-            return _items.Take(Length).ToArray();
+            return _items.Take(Length).ToArray(); 
         }
     }
 }
