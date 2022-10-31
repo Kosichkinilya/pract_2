@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 
 
@@ -10,20 +9,23 @@ namespace LibArray
 {
     public class Array<T>
     {
-        private T[] _items;
+        // поле 
+        private T[] _items; // обобщение
         private int _capacity;
 
         private readonly int _defaultcapacity = 8;
 
+        // конструктор
         public Array(int capacity)
         {
             _items = new T[capacity];
             Capacity = capacity;
         }
 
+        // свойства
         public int Length { get; private set; }
 
-        public T this[int index]
+        public T this[int index] // индексаторы 
         {
             get { return _items[index]; }
             set { _items[index] = value; }
@@ -40,7 +42,8 @@ namespace LibArray
                 }
 
                 _capacity = value;
-                Array.Resize(ref _items, _capacity);
+                Array.Resize(ref _items, _capacity); // Изменяет количество элементов в одномерном массиве до указанной величины.
+
             }
         }
 
@@ -75,7 +78,9 @@ namespace LibArray
             return res;
         }
 
-        public void AddRange(T[] items)
+        // Копирует диапазон элементов из одного массива Array в другой массив Array и при
+        //необходимости выполняет приведение типов и упаковку-преобразование.
+        public void AddRange(T[] items) 
         {
             Capacity = EnsureCapacity(items.Length);
             Array.Copy(items, 0, _items, Length, items.Length);
@@ -115,6 +120,5 @@ namespace LibArray
         {
             return _items.Take(Length).ToArray();
         }
-
     }
 }
