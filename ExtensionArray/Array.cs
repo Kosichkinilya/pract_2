@@ -20,7 +20,7 @@ namespace LibArray
             Capacity = capacity;
         }
 
-        // свойства
+        // авто свойства не требует проверки 
         public int Length { get; private set; }
 
         public T this[int index] // индексаторы c обобщением 
@@ -30,7 +30,7 @@ namespace LibArray
             set { _items[index] = value; }
         }
 
-        // свойства
+        // свойства  с требованием проверки 
         public int Capacity
         {
             get => _capacity;
@@ -43,7 +43,6 @@ namespace LibArray
 
                 _capacity = value;
                 Array.Resize(ref _items, _capacity); // Изменяет количество элементов в одномерном массиве до указанной величины.
-
             }
         }
 
@@ -78,10 +77,10 @@ namespace LibArray
             return res;
         }
 
-        public void AddRange(T[] items) // добавление числе в конец существующего массива 
+        public void AddRange(T[] items) // добавление чисел в конец сущ. массива 
         {
             Capacity = EnsureCapacity(items.Length);
-            Array.Copy(items, 0, _items, Length, items.Length); // массив из которого копируем, с какого элемента, куда копируем, элементы добавляения 
+            Array.Copy(items, 0, _items, Length, items.Length);// 1 окуда. 2 с какого втсавлять. 3 в какой элемент. 4 с какого копировать. 5 вся длинна. 
             Length += items.Length;
         }
 
@@ -91,14 +90,14 @@ namespace LibArray
 
             if (x >= 0)
             {
-                Array.Copy(_items, x + 1, _items, x, Capacity - (x + 1));
+                Array.Copy(_items, x + 1, _items, x, Capacity - (x + 1)); // 1 окуда. 2 с какого втсавлять. 3 в какой элемент.  4 с какого копировать. 5 вся длинна 
                 Length--;
                 return true;
             }
             return false;
         }
 
-        public void Add(T item)
+        public void Add(T item) 
         {
             Capacity = EnsureCapacity();
             _items[Length++] = item;
@@ -109,7 +108,6 @@ namespace LibArray
             Capacity = _defaultcapacity;
             Length = 0;
             _items = new T[Capacity];
-            
         }
     }
 }

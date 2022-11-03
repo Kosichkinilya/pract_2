@@ -11,11 +11,7 @@ namespace Практическая_2_Косичкин
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
+      
         Array<int> list = new Array<int>(0);
 
         private void Exit(object sender, RoutedEventArgs e)
@@ -30,6 +26,7 @@ namespace Практическая_2_Косичкин
             Removing.Clear();
             DataGrid.ItemsSource = null;
             list.Clear();
+            Rezultat_box.Clear();  
         }
 
         private void Information(object sender, RoutedEventArgs e)

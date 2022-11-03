@@ -100,9 +100,9 @@
 
             <MenuItem Width="51" Header="Файл">
 
-                <MenuItem Header="Заполнить" ToolTip="Заполняет массив" />
+                <MenuItem Header="Заполнить" ToolTip="Заполняет массив" Click="Fill" />
 
-                <MenuItem Header="Выполнить" ToolTip="Выполняет расчёт" />
+                <MenuItem Header="Результат" ToolTip="Выполняет расчёт" Click="Rez_Click" />
 
                 <MenuItem Click="Information" Header="О программе" />
 
