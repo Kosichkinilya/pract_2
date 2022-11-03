@@ -29,6 +29,7 @@ namespace Практическая_2_Косичкин
             add_elements_Box.Clear();
             Removing.Clear();
             DataGrid.ItemsSource = null;
+            list.Clear();
         }
 
         private void Information(object sender, RoutedEventArgs e)

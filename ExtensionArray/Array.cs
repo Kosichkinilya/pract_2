@@ -23,13 +23,14 @@ namespace LibArray
         // свойства
         public int Length { get; private set; }
 
-        public T this[int index] // индексаторы c обобщением и методом расширения
+        public T this[int index] // индексаторы c обобщением 
                                  // добавляем новый функционал 
         {
             get { return _items[index]; } 
             set { _items[index] = value; }
         }
 
+        // свойства
         public int Capacity
         {
             get => _capacity;
@@ -77,10 +78,10 @@ namespace LibArray
             return res;
         }
 
-        public void AddRange(T[] items) // добавление массива в конец существующего 
+        public void AddRange(T[] items) // добавление числе в конец существующего массива 
         {
             Capacity = EnsureCapacity(items.Length);
-            Array.Copy(items, 0, _items, Length, items.Length);
+            Array.Copy(items, 0, _items, Length, items.Length); // массив из которого копируем, с какого элемента, куда копируем, элементы добавляения 
             Length += items.Length;
         }
 
@@ -103,17 +104,12 @@ namespace LibArray
             _items[Length++] = item;
         }
 
-        public void Clear()
+        public void Clear() // очищает класс внутри 
         {
             Capacity = _defaultcapacity;
             Length = 0;
             _items = new T[Capacity];
             
-        }
-
-        public T[] ToArray()
-        {
-            return _items.Take(Length).ToArray(); 
         }
     }
 }
